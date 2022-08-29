@@ -1,32 +1,105 @@
-# Prerequisites
-*.d
+//Purpose of program: Tailor receipt system
+//Programmer: Haziq
+//Date: 29/08/2022
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+//include directive
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+//main function
+int main()
+{
+	//variable declaration
+	string typeOfClothe, design, embroidery, typeOfEmbroidery, membership, delivery, address;
+	double price, embroideryPrice, totalPrice, quantity, deliveryCharge, finalPrice;
+	
+	//input
+	cout<<"********Mimpikita FashionValet******** "<<endl;
+	cout<<endl;
+	cout<<"Enter type of clothes "<<endl;
+	cout<<"(BK = Baju Kurung, BM = Baju Melayu, KI = Kids) :";
+	getline(cin,typeOfClothe);
+	if(typeOfClothe =="BK")
+	{
+		cout<<"Enter the design "<<endl;
+		cout<<"(M = modern, P = Peplum) :";
+		cin>>design;
+		if (design == "M")
+		    price = 75;
+		else     
+		    price = 85; 
+		        
+		cout<<"Do you want it embroidered? :";
+		cin>>embroidery;
+		    if(embroidery == "Yes")    
+		    {
+		    	cout<<"Embroidery half or full? :";
+		    	cin>>typeOfEmbroidery;
+		    	if(typeOfEmbroidery == "half")
+		    	    embroideryPrice = 50;
+		    	else
+		    	    embroideryPrice = 100;		    
+			}
+			else 
+			    embroideryPrice = 0;
+			price = price + embroideryPrice;	        
+	}
+	
+	else if(typeOfClothe =="BM")
+	{
+		cout<<"Enter the design "<<endl;
+		cout<<"(CM = Cekak Musang, TB = Teluk Belanga) :";
+		cin>>design;
+		if(design == "CM")
+		    price = 110;
+		else
+		    price = 115;
+	}
+	
+	else if(typeOfClothe =="KI")
+	price = 45;
+	
+	//process
+	cout<<"Enter quantity: ";
+	cin>>quantity;
+	price = price * quantity;
+	cout<<endl;
+	
+	//calculate for membership
+	cout<<"Do you have membership? :";
+	cin>>membership;
+	if(membership == "Yes")
+	        totalPrice = price * 0.75;
+	else
+	        totalPrice = price;
+	
+	//calculate for delivery
+	cout << "Do you want delivery?   :";
+    cin >> delivery;
+    if (delivery == "Yes")
+    {
+        deliveryCharge = 9.50;
+        cout << "Enter your address      :";
+        cin >> address;
+	}
+	else
+	    deliveryCharge = 0;   
+	finalPrice = totalPrice + deliveryCharge;
+    
+	//output
+	cout<<endl;
+	cout<<fixed<<setprecision(2) <<"Total Price            :RM" <<totalPrice<<endl;
+	cout<<fixed<<setprecision(2) <<"Delivery Charge        :RM" <<deliveryCharge<<endl;
+	cout<<fixed<<setprecision(2) <<"Price need to be paid  :RM" <<finalPrice<<endl;
+	cout<<endl;
+	cout<<"***THANK YOU***";
+	
+	return 0;	
+}
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    
+	
+		
+	
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
